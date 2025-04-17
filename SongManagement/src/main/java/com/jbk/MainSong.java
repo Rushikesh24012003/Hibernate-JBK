@@ -18,6 +18,8 @@ public class MainSong {
 		System.out.println("4. Show Record of Arjit and id > 1 by Criteria Method");
 		System.out.println("5. Show all songs by Singer name in descending order");
 		System.out.println("6. Show Record of Arjit and id > 1 by criteriaBuilder Method");
+		System.out.println("7. Show all records of Singer name & Song name by Projections");
+		System.out.println("7. Show all records of Singer name by Projections");
 		System.out.println("Enter a choice :");
 		int choice=sc.nextInt();
 		switch(choice)
@@ -47,8 +49,14 @@ public class MainSong {
 		case 6 : 
 			dao.showRecordByRestictionsByCriteriaBuilder();
 			break;
-		}
-	
+		
+		case 7 : 
+			dao.projections();
+			break;
+		case 8 : 
+			dao.projections1();
+			break;
+		}	
 	}
 	}
 

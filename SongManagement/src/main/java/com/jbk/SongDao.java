@@ -13,6 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 public class SongDao {
@@ -104,6 +106,34 @@ public class SongDao {
 		List<Song> list = query.getResultList();
 		for (Song song : list) {
 			System.out.println(song);
+		}
+	}
+	
+	public void projections() {
+		session= getSession();
+		Criteria criteria = session.createCriteria(Song.class)
+			.setProjection(Projections.projectionList()
+					.add(Projections.property("name"))
+					.add(Projections.property("singer"))
+					);
+		
+		List<Object []> ls = criteria.list();
+		for(Object [] row : ls) {
+			System.out.println();
+			System.out.println("Name of Song : " + row[0]);
+			System.out.println("Name of singer : " + row[1]);
+		}
+	}
+	
+	public void projections1() {
+		session= getSession();
+		Criteria criteria = session.createCriteria(Song.class)
+			.setProjection(Projections.property("singer"));
+		
+		List<String> ls = criteria.list();
+		for(String row : ls) {
+			System.out.println();
+			System.out.println("Name of singer : " + row);
 		}
 	}
 }
